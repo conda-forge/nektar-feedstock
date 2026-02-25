@@ -1,7 +1,7 @@
 context:
   name: "nektar"
   nektar_version: 5.9.0
-  buildnum: 0
+  buildnum: 1
 
 package:
   name: ${{ name|lower }}
