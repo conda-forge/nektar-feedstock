@@ -1,0 +1,9 @@
+--- a/cmake/ThirdPartyMPI.cmake
++++ b/cmake/ThirdPartyMPI.cmake
+@@ -72,6 +72,8 @@ IF( NEKTAR_USE_MPI )
+                 -DCMAKE_INSTALL_PREFIX:PATH=${TPDIST}
+                 ${TPSRC}/gsmpi-1.2.1_2
++            BUILD_BYPRODUCTS
++                ${TPDIST}/lib/libgsmpi.a
++                ${TPDIST}/lib/libxxt.a
+         )

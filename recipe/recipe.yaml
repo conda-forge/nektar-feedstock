@@ -17,6 +17,8 @@ source:
       - libutilities-hdf5-2.0.0.patch
       - hdf5-2.0.0-api-compat.patch
       - scotch-6.0.4-conda-compilers.patch
+      - gsmpi-ninja-byproducts.patch
+      - hdf5-ninja-byproducts.patch
 
 build:
   number: ${{ buildnum }}
@@ -38,6 +40,7 @@ requirements:
     - ${{ stdlib("c") }}
     - flex
     - make
+    - ninja
     - pkg-config
   host:
     - arpack

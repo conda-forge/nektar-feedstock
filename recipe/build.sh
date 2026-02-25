@@ -10,6 +10,7 @@ cd ${SRC_DIR}/nektar
 mkdir build && cd build
 
 cmake ${CMAKE_ARGS} .. \
+  -GNinja \
   -DNEKTAR_BUILD_LIBRARY=ON \
   -DNEKTAR_BUILD_SOLVERS=ON \
   -DNEKTAR_BUILD_UTILITIES=ON \
@@ -29,10 +30,10 @@ cmake ${CMAKE_ARGS} .. \
   -DTHIRDPARTY_BUILD_TINYXML=OFF \
   -DNEKTAR_USE_SYSTEM_BLAS_LAPACK=ON
 
-make -j${CPU_COUNT}
+ninja -j${CPU_COUNT}
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
   ctest --output-on-failure -E "(ADRSolver_Helmholtz3D_CubeDirichlet_par|CompressibleFlowSolver_Annulus90deg3D_WeakDG_SIP_MODIFIED_GL_Prism_par)"
 fi
 
-make install
+ninja install

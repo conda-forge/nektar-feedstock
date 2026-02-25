@@ -1,18 +1,37 @@
 --- a/cmake/ThirdPartyScotch.cmake
 +++ b/cmake/ThirdPartyScotch.cmake
-@@ -100,11 +100,12 @@
+@@ -230,18 +230,25 @@ IF (THIRDPARTY_BUILD_SCOTCH)
+             CONFIGURE_COMMAND rm -f ${SCOTCH_SRC}/Makefile.inc
+             COMMAND ln -s
+                 ${SCOTCH_SRC}/Make.inc/${SCOTCH_MAKE}
                  ${SCOTCH_SRC}/Makefile.inc
              PATCH_COMMAND ${PATCH} -p0 -f < ${PROJECT_SOURCE_DIR}/cmake/thirdparty-patches/scotch-6_0_4-implicit-function.patch
-             BUILD_COMMAND $(MAKE) -C ${SCOTCH_SRC}
+-            BUILD_COMMAND $(MAKE) -C ${SCOTCH_SRC}
 -                "CFLAGS=-I${TPDIST}/include ${SCOTCH_CFLAGS}"
 -                "LDFLAGS=-L${TPDIST}/lib ${SCOTCH_LDFLAGS}"
 -                "CLIBFLAGS=-fPIC"
+-                "CCP=${SCOTCH_C_COMPILER}"
+-                "CCD=${SCOTCH_C_COMPILER}"
++            BUILD_COMMAND make -C ${SCOTCH_SRC}
 +                "CCS=${SCOTCH_C_COMPILER}"
-                 "CCP=${SCOTCH_C_COMPILER}"
-                 "CCD=${SCOTCH_C_COMPILER}"
++                "CCP=${SCOTCH_C_COMPILER}"
++                "CCD=${SCOTCH_C_COMPILER}"
 +                "AR=${CMAKE_AR}"
 +                "CFLAGS=-I${TPDIST}/include ${SCOTCH_CFLAGS} -fPIC"
 +                "LDFLAGS=-L${TPDIST}/lib ${SCOTCH_LDFLAGS}"
                  "YACC=bison -pscotchyy -y -b y -Wno-yacc"
                  ${SCOTCH_BUILD_TARGET}
-             INSTALL_COMMAND $(MAKE) -C ${SCOTCH_SRC}
+-            INSTALL_COMMAND $(MAKE) -C ${SCOTCH_SRC}
++            INSTALL_COMMAND make -C ${SCOTCH_SRC}
+                 prefix=${TPDIST} install
++            BUILD_BYPRODUCTS
++                ${TPDIST}/lib/libscotch.a
++                ${TPDIST}/lib/libscotcherr.a
++                ${TPDIST}/lib/libptscotch.a
++                ${TPDIST}/lib/libptscotcherr.a
+         )
+
+         EXEC_PROGRAM( flex
+             ARGS --version
+             OUTPUT_VARIABLE FLEX_VERSION
+         )
