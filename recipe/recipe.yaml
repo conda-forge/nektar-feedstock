@@ -1,7 +1,7 @@
 context:
   name: "nektar"
   nektar_version: 5.9.0
-  buildnum: 0
+  buildnum: 1
 
 package:
   name: ${{ name|lower }}
@@ -41,7 +41,7 @@ requirements:
     - pkg-config
   host:
     - arpack
-    - boost-cpp >=1.74
+    - libboost-devel <1.85
     - fftw 
     - ${{ mpi }}
     - openblas
@@ -49,7 +49,6 @@ requirements:
     - zlib
   run:
     - arpack
-    - boost-cpp
     - fftw
     - ${{ mpi }}
     - tinyxml
