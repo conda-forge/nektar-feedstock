@@ -19,7 +19,7 @@ source:
       - scotch-6.0.4-conda-compilers.patch
 
 build:
-  number: ${{ buildnum }}
+  number: 1
   string: ${{ mpi }}_h${{ hash }}_${{ buildnum }}
   script: build.sh
   skip:
@@ -42,7 +42,7 @@ requirements:
   host:
     - arpack
     - libboost-devel <1.85
-    - fftw 
+    - fftw
     - ${{ mpi }}
     - openblas
     - tinyxml
@@ -55,8 +55,8 @@ requirements:
 
 tests:
   - script:
-    - IncNavierStokesSolver --help || echo "Solver not built (check config)"
-    - nektar++ --version || echo "Basic check failed"
+      - IncNavierStokesSolver --help || echo "Solver not built (check config)"
+      - nektar++ --version || echo "Basic check failed"
 
 about:
   homepage: https://www.nektar.info/
