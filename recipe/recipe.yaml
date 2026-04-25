@@ -19,7 +19,7 @@ source:
       - scotch-6.0.4-conda-compilers.patch
 
 build:
-  number: 1
+  number: 2
   string: ${{ mpi }}_h${{ hash }}_${{ buildnum }}
   script: build.sh
   skip:
